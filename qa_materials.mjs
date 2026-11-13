@@ -6,7 +6,7 @@ const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',hidd
 const storage=new Map();
 const location={_hash:'#home',get hash(){return this._hash},set hash(value){this._hash=value.startsWith('#')?value:'#'+value},protocol:'file:'};
 const ctx=vm.createContext({console,Date,Math,Set,Map,Object,Number,String,Array,JSON,Error,RegExp,URL,Blob,setInterval(){},setTimeout(){},clearTimeout(){},location,navigator:{},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},document:{querySelector:node,addEventListener:(k,v)=>(listeners[k]??=[]).push(v),activeElement:null,visibilityState:'visible'},window:{scrollTo(){},scrollY:0,addEventListener(){}}});
-for(const f of ['data.js','materials.js','materials-ui.js','app.js'])vm.runInContext(fs.readFileSync(new URL('./'+f,import.meta.url),'utf8'),ctx,{filename:f});
+for(const f of ['data.js','materials.js','materials-ui.js','pronunciations.js','pronunciation-player.js','app.js'])vm.runInContext(fs.readFileSync(new URL('./'+f,import.meta.url),'utf8'),ctx,{filename:f});
 const run=code=>vm.runInContext(code,ctx);
 assert.equal(run('WORDS.length'),2637);
 assert.equal(run('QUESTIONS.length'),2681);
